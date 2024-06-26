@@ -7,9 +7,9 @@
 
 void genIncreasingArray(int array[], int n) {
     srand(time(NULL));
-    array[0] = rand()% 10;
-    for (int i = 1; i <n; i++) {
-        array[i] = array[i-1]+rand() % 10;
+    array[0] = rand() % 10;
+    for (int i = 1; i < n; i++) {
+        array[i] = array[i - 1] + rand() % 10;
     }
 }
 
@@ -66,18 +66,15 @@ void automate(int test_sizes[], TestResult results[MAX_SIZE], int numtests) {
         genIncreasingArray(a, n);
 
         int targetIndex = n - 100;
-        if (targetIndex < 0) {
-            targetIndex = 0;
-        }
+        if (targetIndex < 0) targetIndex = 0; 
         int x = a[targetIndex];
 
-        
+
         start = getTimeInSeconds();
         LinearSearch(a, n, x);
         stop = getTimeInSeconds();
         double linearTime = stop - start;
 
-        
         start = getTimeInSeconds();
         BinarySearch(a, n, x);
         stop = getTimeInSeconds();
@@ -98,7 +95,7 @@ int main() {
     int numtests = 15;
     int test_sizes[numtests];
     for (int i = 0; i < numtests; i++) {
-        test_sizes[i] = (i + 1) * 100000000;
+        test_sizes[i] = (i + 1) * 100000;
     }
 
     automate(test_sizes, results, numtests);
