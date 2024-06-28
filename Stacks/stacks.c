@@ -1,25 +1,17 @@
 #include <stdlib.h>
 #include <stdio.h>
-
+#include <stdbool.h>
 #define MAX_SIZE 100
 
 int top = -1;
 int stack[MAX_SIZE];
 
-void isempty(){
-    if (top==MAX_SIZE-1) {
-        printf("Stack is full\n");
-    } else {
-        printf("Stack is not full\n");
-    }
+bool isempty() {
+    return (top ==-1);
 }
 
-void isfull(){
-    if (top==-1) {
-        printf("\nStack is empty\n");
-    } else {
-        printf("\nStack is not empty\n");
-    }
+bool isfull() {
+    return (top == MAX_SIZE-1);
 }
 
 void push(int data){
@@ -54,6 +46,7 @@ int peek(){
 
 int main(){
     int choice, data;
+    bool empty, full;
     while (1){
         printf("\nEnter the operation you would like to do to stack\n");
         printf("To push press 1\n");
@@ -83,10 +76,20 @@ int main(){
                 }
                 break;
             case 4:
-                isempty();
+                full = isfull();
+                if (full) {
+                    printf("\nStack is full\n");
+                } else {
+                    printf("\nStack is not full\n");
+                }
                 break;
             case 5:
-                isfull();
+                empty = isempty();
+                if (empty) {
+                    printf("\nStack is empty\n");
+                } else {
+                    printf("\nStack is not empty\n");
+                }
                 break;
             case 6:
                 return 0;

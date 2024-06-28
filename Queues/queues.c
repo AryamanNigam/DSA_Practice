@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <stdbool.h> // Include for boolean type
 
 #define MAX_SIZE 100
 
@@ -7,36 +8,28 @@ int front = -1;
 int rear = -1;
 int queue[MAX_SIZE];
 
-void isempty(){
-    if (front == -1&& rear == -1) {
-        printf("Queue is empty\n");
-    } else {
-        printf("Queue is not empty\n");
-    }
+bool isempty(){
+    return (front == -1 && rear == -1);
 }
 
-void isfull(){
-    if (rear==MAX_SIZE-1) {
-        printf("\nQueue is full\n");
-    } else {
-        printf("\nQueue is not full\n");
-    }
+bool isfull(){
+    return (rear == MAX_SIZE - 1);
 }
 
 void enqueue(int data){
-    if (rear==MAX_SIZE-1) {
+    if (isfull()) {
         fprintf(stderr, "\nQueue is full\n");
         return;
     }
-    if (front==-1) {
-        front=0;
+    if (front == -1){
+        front = 0;
     }
     rear++;
-    queue[rear]=data;
+    queue[rear] = data;
 }
 
-int dequeue() {
-    if (front == -1 || front > rear) {
+int dequeue(){
+    if (isempty()) {
         fprintf(stderr, "\nQueue is empty\n");
         return -1;
     }
@@ -48,16 +41,17 @@ int dequeue() {
     return data;
 }
 
-int peek() {
-    if (front == -1) {
+int peek(){
+    if (isempty()) {
         fprintf(stderr, "\nQueue is empty\n");
         return -1;
     }
     return queue[front];
 }
 
-int main() {
+int main(){
     int choice, data;
+    bool empty, full;
     while (1) {
         printf("\n\nEnter the operation you would like to do to queue\n");
         printf("To enqueue, press 1\n");
@@ -68,7 +62,7 @@ int main() {
         printf("To exit, press 6\n\n");
         scanf("%d", &choice);
 
-        switch (choice) {
+        switch (choice){
             case 1:
                 printf("\nEnter the element to be added into the queue: ");
                 scanf("%d", &data);
@@ -87,10 +81,20 @@ int main() {
                 }
                 break;
             case 4:
-                isfull();
+                full = isfull();
+                if (full) {
+                    printf("\nQueue is full\n");
+                } else {
+                    printf("\nQueue is not full\n");
+                }
                 break;
             case 5:
-                isempty();
+                empty = isempty();
+                if (empty){
+                    printf("\nQueue is empty\n");
+                } else {
+                    printf("\nQueue is not empty\n");
+                }
                 break;
             case 6:
                 return 0;
