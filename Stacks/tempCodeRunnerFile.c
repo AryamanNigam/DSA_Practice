@@ -1,0 +1,1 @@
+printf("\n1.Push the element\n2.Pop the element\n3.Show\n4.End\n");
