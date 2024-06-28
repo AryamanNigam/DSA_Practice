@@ -7,7 +7,7 @@ int top = -1;
 int stack[MAX_SIZE];
 
 void isempty(){
-    if(top == MAX_SIZE-1) {
+    if (top==MAX_SIZE-1) {
         printf("Stack is full\n");
     } else {
         printf("Stack is not full\n");
@@ -15,41 +15,38 @@ void isempty(){
 }
 
 void isfull(){
-    if (top== -1) {
+    if (top==-1) {
         printf("\nStack is empty\n");
     } else {
         printf("\nStack is not empty\n");
     }
 }
 
-void push(){
-    int data;
-    if (top == MAX_SIZE - 1) {
+void push(int data){
+    if (top ==MAX_SIZE-1) {
         fprintf(stderr, "\nStack Overflow\n");
         return;
     } else {
-        printf("\nEnter the element to be added onto the stack: ");
-        scanf("%d", &data);
-        top = top + 1;
+        top = top+1;
         stack[top] = data;
     }
 }
 
 int pop(){
-    if (top == -1) {
+    if (top==-1) {
         fprintf(stderr, "\nStack is empty\n");
         return -1;
     } else {
         int data = stack[top];
-        top = top - 1;
+        top = top-1;
         return data;
     }
 }
 
 int peek(){
-    if (top == -1) {
+    if (top==-1) {
         fprintf(stderr, "\nStack is empty\n");
-        return -1;
+        return-1;
     } else {
         return stack[top];
     }
@@ -69,11 +66,13 @@ int main(){
 
         switch(choice){
             case 1:
-                push();
+                printf("\nEnter the element to be added onto the stack: ");
+                scanf("%d", &data);
+                push(data);
                 break;
             case 2:
                 data = pop();
-                if (data != -1) {
+                if (data!=-1) {
                     printf("\nPopped element: %d\n", data);
                 }
                 break;
